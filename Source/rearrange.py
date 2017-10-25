@@ -6,11 +6,20 @@ def random_python(words):
     result = []
     for i in range(0, len(words)):
         rand_index = random.randint(0, len(words)-1)
+        print(words.pop(rand_index))
         result.append(words.pop(rand_index))
     return(' '.join(result))
 
+def reverse_word(letters):
+    result = letters[::-1]
+    return result
 
 if __name__ == '__main__':
+    # this is for reverse str
+    # words = str(sys.argv[1:]).replace("[","").replace("]","")
+    # print(words)
+    # uncomment this if wanna do the basic challenge for #1
     words = sys.argv[1:]
-    print(random_python(words))
-
+    print(words)
+    # print(random_python(words))
+    # print(reverse_word(words))
