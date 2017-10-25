@@ -3,6 +3,7 @@ import random, sys
 def get_words(letters):
     with open('/usr/share/dict/words', 'r') as f:
         data = f.read()
+        # splits at space
         dataList = data.split()
         # print(dataList)
         results = []
