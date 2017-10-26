@@ -1,9 +1,9 @@
 import random, sys
 
-
-
 def random_python(words):
     result = []
+    if len(words) == 0:
+        print("no words were given")
     for i in range(0, len(words)):
         rand_index = random.randint(0, len(words)-1)
         print(words.pop(rand_index))
@@ -28,16 +28,15 @@ def mad_libs(words):
     print(sentence)
 
 def anagram_gen(words):
-
     temp = []
-    word = words.split(",")
-    print(word)
-    for i, letter in enumerate(word):
-        for j in (word[:i]+word[i+1:]):
-            print(word[:i])
-            print(word[i+1:])
-            temp.append(j+letter)
-    print(temp)
+    word = list(words)
+    # print(word)
+    while len(word) > 0:
+        rand_index = random.randint(0, len(word)-1)
+        temp.append(word[rand_index])
+        word.remove(word[rand_index])
+    print("".join(temp))
+
 
 
 
@@ -45,6 +44,7 @@ if __name__ == '__main__':
     # this is for reverse str
     # words = str(sys.argv[1:]).replace("[","").replace("]","")
     # print(words)
+
     # uncomment this if wanna do the basic challenge for #1
     # words = sys.argv[1:]
     # print(words)
@@ -53,6 +53,7 @@ if __name__ == '__main__':
 
     # this is for mad libs
     words = sys.argv[1:][0]
-    # print(words[1:])
+    # print(words)
+    # ['apple']
     # mad_libs(words)
     anagram_gen(words)
