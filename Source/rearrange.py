@@ -27,6 +27,20 @@ def mad_libs(words):
     sentence = part1 + part2 + part3
     print(sentence)
 
+def anagram_gen(words):
+
+    temp = []
+    word = words.split(",")
+    print(word)
+    for i, letter in enumerate(word):
+        for j in (word[:i]+word[i+1:]):
+            print(word[:i])
+            print(word[i+1:])
+            temp.append(j+letter)
+    print(temp)
+
+
+
 if __name__ == '__main__':
     # this is for reverse str
     # words = str(sys.argv[1:]).replace("[","").replace("]","")
@@ -38,5 +52,7 @@ if __name__ == '__main__':
     # print(reverse_word(words))
 
     # this is for mad libs
-    words = sys.argv[1:]
-    mad_libs(words)
+    words = sys.argv[1:][0]
+    # print(words[1:])
+    # mad_libs(words)
+    anagram_gen(words)
