@@ -22,3 +22,18 @@ def histogram_list(sentence):
     print(list_result)
 
 histogram_list(sentence)
+
+# replacing a elemeny in tuples is more expensive than in a list
+tuple_result = []
+def histogram_tuples(sentence):
+    for item in sentence:
+        occurence = sentence.count(item)
+        first_tuple = (item, occurence)
+        if first_tuple not in tuple_result:
+            tuple_result.append(first_tuple)
+    print(tuple_result)
+
+histogram_tuples(sentence)
+
+
+
