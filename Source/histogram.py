@@ -35,5 +35,12 @@ def histogram_tuples(sentence):
 
 histogram_tuples(sentence)
 
+dict_result = {}
+def histogram_dict(sentence):
+    for item in sentence:
+        occurence = sentence.count(item)
+        dict_result[item] = occurence
+    print(dict_result)
 
+histogram_dict(sentence)
 
