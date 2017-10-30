@@ -39,8 +39,49 @@ dict_result = {}
 def histogram_dict(sentence):
     for item in sentence:
         occurence = sentence.count(item)
+        # since key in dict has to be unique, we don't need to worry about duplicate
         dict_result[item] = occurence
-    print(dict_result)
+    return(dict_result)
 
 histogram_dict(sentence)
+
+# group_list = [(1, ['one', 'two', 'red', 'blue']), (4, ['fish'])]
+def group_histogram(sentence):
+    flattened_list = []
+    group_count = []
+    for item in sentence:
+        occurence = sentence.count(item)
+        if item not in flattened_list:
+            flattened_list.append(item)
+            flattened_list.append(occurence)
+        # get the word and occurence in the same level of a dict
+    print(flattened_list)
+
+    # group the words by occurence in a tuple and put tuples into a dict
+    for current_index in range(1, len(flattened_list), 2):
+        # if occurence already exist in group_count, get the words that has the same occurence
+        if flattened_list[current_index] in group_count:
+            temp_count = flattened_list[current_index]
+            append_word_index = group_count.index(temp_count) + 1
+            append_word = flattened_list[current_index-1]
+            group_count[append_word_index].append(append_word)
+            # print(group_count)
+        else:
+            # append the tuple with the unique occurence as first element, dict of words as second
+            # group_count.append((flattened_list[current_index], flattened_list[current_index-1]))
+            group_count.append(flattened_list[current_index])
+            group_count.append([flattened_list[current_index-1]])
+            # print('OOOOOOOOO', group_count)
+    print(group_count)
+
+group_histogram(sentence)
+
+
+
+
+
+
+
+
+
 
