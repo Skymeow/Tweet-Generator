@@ -91,7 +91,13 @@ def unique_words(group_count):
 
 unique_words(group_count)
 
+def frequency(word, group_count):
+    for i in range(1, len(group_count), 2):
+        if word in group_count[i]:
+            frequency_count = group_count[i-1]
+    print(frequency_count)
 
+frequency('fish', group_count)
 
 
 
