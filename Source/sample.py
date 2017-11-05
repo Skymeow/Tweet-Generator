@@ -1,17 +1,13 @@
 import sys, random, time
-
+import histogram
 t_init = time.time()
 
 with open('onefish.txt', 'r') as f:
     data = f.read()
     wordsList = data.split()
-    # print(wordsList)
-# The recipe uses module random's function uniform to get a uniformly distributed pseudo-random number between 0.0 and 1.0, then loops in parallel on items and their probabilities, computing the increasing cumulative probability, until the latter becomes greater than the pseudo-random number.
-# 1. get just unique words ["one","two","fish"]
-# 2. adds up frequency(token)
-# randint(inclusive in both sides): [0,len-1]
-# initially set word_frequency = 1
-histogram_dict = {'one': 1, 'fish': 4, 'red': 1, 'two': 1, 'blue': 1}
+
+histogram_dict = histogram.histogram_dict(wordsList)
+
 def sample_by_frequency(histogram_dict):
 # get total num of the words frequency
     total_token = sum(histogram_dict.values())
@@ -34,9 +30,12 @@ def check_weighted_probability(random_words):
             words_histogram[word] = 1
     return words_histogram
 
+def create_random_sentence(sentence_length):
+    random_words = [sample_by_frequency(histogram_dict) for _ in range(sentence_length)]
+    return ' '.join(random_words)
 
-
-random_words = [sample_by_frequency(histogram_dict) for _ in range(100000)]
-print(check_weighted_probability(random_words))
+print(create_random_sentence(5))
+# print(check_weighted_probability(random_words))
+# random_words = [sample_by_frequency(histogram_dict) for _ in range(0, 10)]
 finish = time.time()
 print(finish-t_init)

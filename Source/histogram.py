@@ -19,9 +19,9 @@ def histogram_list(sentence):
         # prevent adding duplicated item to the list
         if first_list not in list_result:
             list_result.append(first_list)
-    print(list_result)
+    return(list_result)
 
-histogram_list(sentence)
+# histogram_list(sentence)
 
 # replacing a elemeny in tuples is more expensive than in a list
 tuple_result = []
@@ -31,19 +31,19 @@ def histogram_tuples(sentence):
         first_tuple = (item, occurence)
         if first_tuple not in tuple_result:
             tuple_result.append(first_tuple)
-    print(tuple_result)
+    return(tuple_result)
 
-histogram_tuples(sentence)
+# histogram_tuples(sentence)
 
-dict_result = {}
 def histogram_dict(sentence):
+    dict_result = {}
     for item in sentence:
         occurence = sentence.count(item)
         # since key in dict has to be unique, we don't need to worry about duplicate
         dict_result[item] = occurence
     return(dict_result)
 
-histogram_dict(sentence)
+# histogram_dict(sentence)
 
 # group_list = [(1, ['one', 'two', 'red', 'blue']), (4, ['fish'])]
 def group_histogram(sentence):
@@ -56,7 +56,6 @@ def group_histogram(sentence):
             flattened_list.append(occurence)
         # get the word and occurence in the same level of a dict
     print(flattened_list)
-
     # group the words by occurence in a tuple and put tuples into a dict
     for current_index in range(1, len(flattened_list), 2):
         # if occurence already exist in group_count, get the words that has the same occurence
@@ -76,9 +75,9 @@ def group_histogram(sentence):
             group_count.append([flattened_list[current_index-1]])
     return(group_count)
 
-group_histogram(sentence)
+# group_histogram(sentence)
 
-print("YOOOOOO", group_count)
+# print("YOOOOOO", group_count)
 def unique_words(group_count):
     print("HII", len(group_count))
     for i in range(0,len(group_count)):
@@ -89,7 +88,7 @@ def unique_words(group_count):
     print(unique_words_count)
     return unique_words_count
 
-unique_words(group_count)
+# unique_words(group_count)
 
 def frequency(word, group_count):
     for i in range(1, len(group_count), 2):
@@ -97,7 +96,7 @@ def frequency(word, group_count):
             frequency_count = group_count[i-1]
     print(frequency_count)
 
-frequency('fish', group_count)
+# frequency('fish', group_count)
 
 
 
