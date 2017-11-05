@@ -1,0 +1,5 @@
+Flask==0.12.2
+gunicorn==19.7.1
+pathlib2==2.3.0
+Flask-RESTful==0.3.6
+python-dateutil==2.6.1

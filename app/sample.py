@@ -34,8 +34,8 @@ def create_random_sentence(sentence_length):
     random_words = [sample_by_frequency(histogram_dict) for _ in range(sentence_length)]
     return ' '.join(random_words)
 
-print(create_random_sentence(5))
+# print(create_random_sentence(5))
 # print(check_weighted_probability(random_words))
 # random_words = [sample_by_frequency(histogram_dict) for _ in range(0, 10)]
-finish = time.time()
-print(finish-t_init)
+# finish = time.time()
+# print(finish-t_init)
