@@ -48,7 +48,6 @@ def histogram_dict(sentence):
 # group_list = [(1, ['one', 'two', 'red', 'blue']), (4, ['fish'])]
 def group_histogram(sentence):
     flattened_list = []
-    # group_count = []
     for item in sentence:
         occurence = sentence.count(item)
         if item not in flattened_list:

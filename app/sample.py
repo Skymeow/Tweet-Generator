@@ -13,11 +13,10 @@ def sample_by_frequency(histogram_dict):
     total_token = sum(histogram_dict.values())
     # rand_frequency = random.randint(0, total_token)/total_token
     rand_frequency = random.uniform(0, 1)
-    each_token = 0
-    temp = 'word'
+    weighted_token = 0
     for k, v in histogram_dict.items():
-        each_token += v/total_token
-        if each_token > rand_frequency:
+        weighted_token += v/total_token
+        if weighted_token > rand_frequency:
             return k
 
 # check how many time the word appears in the 10000 calls
