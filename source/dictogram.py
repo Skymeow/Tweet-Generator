@@ -21,13 +21,11 @@ class Dictogram(dict):
         """Increase frequency count of given word by given count amount."""
         # TODO: Increase word frequency by count
         if word in self:
-            self.tokens += 1
-            self[word] += 1
-            self.count += 1
+            self[word] += count
         else:
-            self.tokens += 1
-            self[word] = 0
             self.types += 1
+            self[word] = count
+        self.tokens += count
 
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
