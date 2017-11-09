@@ -20,20 +20,52 @@ class Listogram(list):
     def add_count(self, word, count=1):
         """Increase frequency count of given word by given count amount."""
         # TODO: Increase word frequency by count
+        # you can't change tuple
+        # check if the rand word from list is the same as word in each tuple
+        # also need to check if the word already exist in the list tuple
+        frequency = 0
+        for tuple_item in self:
+            if tuple_item[0] == word:
+                frequency = tuple_item[1]
+                frequency += count
+                self.remove(tuple_item)
+                new_tuple_item = (word, frequency)
+                self.append(new_tuple_item)
+            else:
+                self.type += 1
+                if word not in tuple_item:
+                    new_tuple_item = (word, count)
+                    self.append(new_tuple_item)
+            self.tokens += count
 
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
         # TODO: Retrieve word frequency count
+        for tuple_item in self:
+            if word == tuple_item[0]:
+                return tuple_item(1)
+            else:
+                return 0
+
 
     def __contains__(self, word):
         """Return boolean indicating if given word is in this histogram."""
         # TODO: Check if word is in this histogram
+        for tuple_item in self:
+            if word == tuple_item[0]:
+                return True
+            else:
+                return False
 
     def _index(self, target):
         """Return the index of entry containing given target word if found in
         this histogram, or None if target word is not found."""
         # TODO: Implement linear search to find index of entry with target word
-
+        for tuple_item in self:
+            if target == tuple_item[0]:
+                return tuple_item[1]
+            else:
+                return None
 
 def print_histogram(word_list):
     print('word list: {}'.format(word_list))
