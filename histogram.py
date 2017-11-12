@@ -54,7 +54,7 @@ def group_histogram(sentence):
             flattened_list.append(item)
             flattened_list.append(occurence)
         # get the word and occurence in the same level of a dict
-    print(flattened_list)
+    # print(flattened_list)
     # group the words by occurence in a tuple and put tuples into a dict
     for current_index in range(1, len(flattened_list), 2):
         # if occurence already exist in group_count, get the words that has the same occurence
@@ -78,13 +78,13 @@ def group_histogram(sentence):
 
 # print("YOOOOOO", group_count)
 def unique_words(group_count):
-    print("HII", len(group_count))
+    # print("HII", len(group_count))
     for i in range(0,len(group_count)):
-        print(group_count[i])
+        # print(group_count[i])
         if group_count[i] == 1:
             result_word = group_count[i+1]
         unique_words_count = len(result_word)
-    print(unique_words_count)
+    # print(unique_words_count)
     return unique_words_count
 
 # unique_words(group_count)
@@ -93,7 +93,7 @@ def frequency(word, group_count):
     for i in range(1, len(group_count), 2):
         if word in group_count[i]:
             frequency_count = group_count[i-1]
-    print(frequency_count)
+    # print(frequency_count)
 
 # frequency('fish', group_count)
 
