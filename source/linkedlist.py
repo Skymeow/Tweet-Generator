@@ -131,19 +131,21 @@ class LinkedList(object):
             else:
                 self.head = self.head.next
                 return
-        # reassign current_node to the next if the head is not what we want to delete
+
         while current_node.next != None:
             next_node = current_node.next
             print(next_node.data, "next_node")
             if next_node.data == item:
-                if next_node.next != self.tail:
-                    new_next_node = next_node.next
-                    current_node.next = new_next_node
-                else:
-                    current_node.next = None
+                if next_node == self.tail:
                     # reassign the tail
                     self.tail = current_node
-                found = True
+                    current_node.next = None
+                    found = True
+                    break
+                else:
+                    new_next_node = next_node.next
+                    current_node.next = new_next_node
+                    found = True
             print(self.length())
             current_node = current_node.next
         if not found:
