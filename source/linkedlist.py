@@ -42,7 +42,8 @@ class LinkedList(object):
         node = self.head  # O(1) time to assign new variable
         # Loop until node is None, which is one node too far past tail
         while node is not None:  # Always n iterations because no early return
-            items.append(node.data)  # O(1) time (on average) to append to list
+            items.append(node.data)
+             # O(1) time (on average) to append to list
             # Skip to next node to advance forward in linked list
             node = node.next  # O(1) time to reassign variable
         # Now list contains items from all nodes
@@ -56,18 +57,42 @@ class LinkedList(object):
         """Return the length of this linked list by traversing its nodes.
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes and count one for each
+        count = 0
+        node = self.head
+        while node != None:
+            count += 1
+            # iterate to the next node
+            node = node.next
+        print('this is count', count)
+        return count
+
 
     def append(self, item):
-        """Insert the given item at the tail of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        """Insert the given item at the tail of this linked list."""
         # TODO: Create new node to hold given item
         # TODO: Append node after tail, if it exists
+        new_node = Node(item)
+        if self.is_empty():
+            self.head = new_node
+            self.tail = new_node
+        else:
+            # pointing to the next location
+            self.tail.next = new_node
+            self.tail = new_node
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Create new node to hold given item
         # TODO: Prepend node before head, if it exists
+        new_node = Node(item)
+        if self.head != None:
+            tem_node = self.head
+            self.head = new_node
+            self.head.next = tem_node
+        else:
+            self.head = new_node
+            self.tail = self.head
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
@@ -75,6 +100,15 @@ class LinkedList(object):
         TODO: Worst case running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes to find item where quality(item) is True
         # TODO: Check if node's data satisfies given quality function
+        # for item in self.items():
+        #     if item == quality:
+        #         return True
+        # return None
+        node = self.head
+        while node != None:
+            if quality(node.data):
+                return node
+            node = node.next
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
@@ -84,6 +118,25 @@ class LinkedList(object):
         # TODO: Update previous node to skip around node with matching data
         # TODO: Otherwise raise error to tell user that delete has failed
         # Hint: raise ValueError('Item not found: {}'.format(item))
+        # for index, node in enumerate(self.items):
+        #     if node == item:
+        #         origin_next_node = self.items[index+1]
+        #         last_node_index = index-1
+        #         self.items.remove(item)
+        #         self.items[last_node_index].next = origin_next_node
+        #     else:
+        #         return ValueError('Item not found: {}'.format(item))
+        node = self.head
+        while node != None:
+            delete_node = self.find(item)
+            if delete_node:
+                node = delete_node.next
+                node.next = delete_node.next
+                delete_node = None
+                node = node.next
+            else:
+                return ValueError('Item not found: {}'.format(item))
+            # node = node.next
 
 
 def test_linked_list():
