@@ -78,6 +78,7 @@ class LinkedList(object):
         else:
             # pointing to the next location
             self.tail.next = new_node
+            # reassign newnode to tail
             self.tail = new_node
 
     def prepend(self, item):
@@ -114,24 +115,39 @@ class LinkedList(object):
         # TODO: Update previous node to skip around node with matching data
         # TODO: Otherwise raise error to tell user that delete has failed
         # Hint: raise ValueError('Item not found: {}'.format(item))
-        node = self.head
+        current_node = self.head
+        tail_node = self.tail
         found = False
-        if self.is_empty == True:
+        if self.is_empty():
             raise ValueError('oops list empty')
             return
-        while node != None:
-            if node.next.data == item:
-                found = True
-                if node.next != self.trail:
-                    node.next = node.next.next
+        # if the item we want to delete is the only item in the linked list
+        if current_node.data == item:
+            found = True
+            if current_node == tail_node:
+                self.head = None
+                self.tail = None
+                return
+            else:
+                self.head = self.head.next
+                return
+        # reassign current_node to the next if the head is not what we want to delete
+        while current_node.next != None:
+            next_node = current_node.next
+            print(next_node.data, "next_node")
+            if next_node.data == item:
+                if next_node.next != self.tail:
+                    new_next_node = next_node.next
+                    current_node.next = new_next_node
                 else:
-                    self.trail = node
-                    node.next = None
-            node = node.next
-        if found == False:
+                    current_node.next = None
+                    # reassign the tail
+                    self.tail = current_node
+                found = True
+            print(self.length())
+            current_node = current_node.next
+        if not found:
             raise ValueError('Item not found: {}'.format(item))
-
-
 
 def test_linked_list():
     ll = LinkedList()
