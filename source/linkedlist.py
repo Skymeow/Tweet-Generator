@@ -63,7 +63,7 @@ class LinkedList(object):
             count += 1
             # iterate to the next node
             node = node.next
-        print('this is count', count)
+        # print('this is count', count)
         return count
 
 
@@ -86,13 +86,13 @@ class LinkedList(object):
         # TODO: Create new node to hold given item
         # TODO: Prepend node before head, if it exists
         new_node = Node(item)
-        if self.head != None:
+        if self.is_empty():
+            self.head = new_node
+            self.tail = new_node
+        else:
             tem_node = self.head
             self.head = new_node
             self.head.next = tem_node
-        else:
-            self.head = new_node
-            self.tail = self.head
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
@@ -100,14 +100,10 @@ class LinkedList(object):
         TODO: Worst case running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes to find item where quality(item) is True
         # TODO: Check if node's data satisfies given quality function
-        # for item in self.items():
-        #     if item == quality:
-        #         return True
-        # return None
         node = self.head
         while node != None:
             if quality(node.data):
-                return node
+                return node.data
             node = node.next
 
     def delete(self, item):
@@ -118,24 +114,20 @@ class LinkedList(object):
         # TODO: Update previous node to skip around node with matching data
         # TODO: Otherwise raise error to tell user that delete has failed
         # Hint: raise ValueError('Item not found: {}'.format(item))
-        # for index, node in enumerate(self.items):
-        #     if node == item:
-        #         origin_next_node = self.items[index+1]
-        #         last_node_index = index-1
-        #         self.items.remove(item)
-        #         self.items[last_node_index].next = origin_next_node
-        #     else:
-        #         return ValueError('Item not found: {}'.format(item))
         node = self.head
+        # if node is None:
+        #     raise ValueError('oops list empty")
+        #     return
         while node != None:
-            delete_node = self.find(item)
-            if delete_node:
-                node = delete_node.next
-                node.next = delete_node.next
-                delete_node = None
-                node = node.next
-            else:
-                return ValueError('Item not found: {}'.format(item))
+            if node.next.data == item:
+                if node.next != self.trail:
+                    node.next = node.next.next
+                else:
+                    self.trail = node
+                    node.next = None
+            node = node.next
+            # else:
+            #     raise ValueError('Item not found: {}'.format(item))
             # node = node.next
 
 

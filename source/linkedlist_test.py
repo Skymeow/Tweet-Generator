@@ -124,18 +124,18 @@ class LinkedListTest(unittest.TestCase):
         assert ll.head.data == 'A'  # Unchanged
         assert ll.tail.data == 'C'  # New tail
 
-    # def test_prepend(self):
-    #     ll = LinkedList()
-    #     # Prepend should always update head node
-    #     ll.prepend('C')
-    #     assert ll.head.data == 'C'  # New head
-    #     assert ll.tail.data == 'C'  # New head
-    #     ll.prepend('B')
-    #     assert ll.head.data == 'B'  # New head
-    #     assert ll.tail.data == 'C'  # Unchanged
-    #     ll.prepend('A')
-    #     assert ll.head.data == 'A'  # New head
-    #     assert ll.tail.data == 'C'  # Unchanged
+    def test_prepend(self):
+        ll = LinkedList()
+        # Prepend should always update head node
+        ll.prepend('C')
+        assert ll.head.data == 'C'  # New head
+        assert ll.tail.data == 'C'  # New head
+        ll.prepend('B')
+        assert ll.head.data == 'B'  # New head
+        assert ll.tail.data == 'C'  # Unchanged
+        ll.prepend('A')
+        assert ll.head.data == 'A'  # New head
+        assert ll.tail.data == 'C'  # Unchanged
 
     def test_find(self):
         ll = LinkedList(['A', 'B', 'C'])
