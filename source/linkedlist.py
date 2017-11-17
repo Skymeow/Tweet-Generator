@@ -59,9 +59,10 @@ class LinkedList(object):
         # TODO: Loop through all nodes and count one for each
         count = 0
         node = self.head
+        # see if we hit the end of linkedlist
         while node != None:
             count += 1
-            # iterate to the next node
+            # move one down the list and count it
             node = node.next
         # print('this is count', count)
         return count
@@ -74,12 +75,11 @@ class LinkedList(object):
         new_node = Node(item)
         if self.is_empty():
             self.head = new_node
-            self.tail = new_node
         else:
-            # pointing to the next location
+            # put new node after the tail
             self.tail.next = new_node
-            # reassign newnode to tail
-            self.tail = new_node
+        # In either case we need to change the tail
+        self.tail = new_node
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
@@ -132,9 +132,9 @@ class LinkedList(object):
                 self.head = self.head.next
                 return
 
-        while current_node.next != None:
+        while current_node.next:
             next_node = current_node.next
-            print(next_node.data, "next_node")
+            # print(next_node.data, "next_node")
             if next_node.data == item:
                 if next_node == self.tail:
                     # reassign the tail
@@ -146,7 +146,7 @@ class LinkedList(object):
                     new_next_node = next_node.next
                     current_node.next = new_next_node
                     found = True
-            print(self.length())
+            # print(self.length())
             current_node = current_node.next
         if not found:
             raise ValueError('Item not found: {}'.format(item))

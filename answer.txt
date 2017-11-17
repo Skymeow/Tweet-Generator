@@ -1,4 +1,0 @@
-1. key feature is generate the random sentences based on how often each word appears in the txt file.
-histogram should be in a class
-
-2.

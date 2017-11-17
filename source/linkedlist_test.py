@@ -50,16 +50,16 @@ class LinkedListTest(unittest.TestCase):
         ll.append('C')
         assert ll.items() == ['A', 'B', 'C']
 
-    # def test_items_after_prepend(self):
-    #     ll = LinkedList()
-    #     assert ll.items() == []
-    #     # Prepend should add new item to head of list
-    #     ll.prepend('C')
-    #     assert ll.items() == ['C']
-    #     ll.prepend('B')
-    #     assert ll.items() == ['B', 'C']
-    #     ll.prepend('A')
-    #     assert ll.items() == ['A', 'B', 'C']
+    def test_items_after_prepend(self):
+        ll = LinkedList()
+        assert ll.items() == []
+        # Prepend should add new item to head of list
+        ll.prepend('C')
+        assert ll.items() == ['C']
+        ll.prepend('B')
+        assert ll.items() == ['B', 'C']
+        ll.prepend('A')
+        assert ll.items() == ['A', 'B', 'C']
 
     def test_length_after_append(self):
         ll = LinkedList()
@@ -72,29 +72,29 @@ class LinkedListTest(unittest.TestCase):
         ll.append('C')
         assert ll.length() == 3
 
-    # def test_length_after_prepend(self):
-    #     ll = LinkedList()
-    #     assert ll.length() == 0
-    #     # Prepend should increase length
-    #     ll.prepend('C')
-    #     assert ll.length() == 1
-    #     ll.prepend('B')
-    #     assert ll.length() == 2
-    #     ll.prepend('A')
-    #     assert ll.length() == 3
+    def test_length_after_prepend(self):
+        ll = LinkedList()
+        assert ll.length() == 0
+        # Prepend should increase length
+        ll.prepend('C')
+        assert ll.length() == 1
+        ll.prepend('B')
+        assert ll.length() == 2
+        ll.prepend('A')
+        assert ll.length() == 3
 
-    # def test_length_after_append_and_prepend(self):
-    #     ll = LinkedList()
-    #     assert ll.length() == 0
-    #     # Append and prepend should increase length
-    #     ll.append('C')
-    #     assert ll.length() == 1
-    #     ll.prepend('B')
-    #     assert ll.length() == 2
-    #     ll.append('D')
-    #     assert ll.length() == 3
-    #     ll.prepend('A')
-    #     assert ll.length() == 4
+    def test_length_after_append_and_prepend(self):
+        ll = LinkedList()
+        assert ll.length() == 0
+        # Append and prepend should increase length
+        ll.append('C')
+        assert ll.length() == 1
+        ll.prepend('B')
+        assert ll.length() == 2
+        ll.append('D')
+        assert ll.length() == 3
+        ll.prepend('A')
+        assert ll.length() == 4
 
     def test_length_after_delete(self):
         ll = LinkedList(['A', 'B', 'C', 'D', 'E'])
@@ -144,52 +144,52 @@ class LinkedListTest(unittest.TestCase):
         assert ll.find(lambda item: item > 'B') == 'C'  # Match greater than
         assert ll.find(lambda item: item == 'X') is None  # No matching item
 
-    # def test_delete_with_3_items(self):
-    #     ll = LinkedList(['A', 'B', 'C'])
-    #     assert ll.head.data == 'A'  # First item
-    #     assert ll.tail.data == 'C'  # Last item
-    #     ll.delete('A')
-    #     assert ll.head.data == 'B'  # New head
-    #     assert ll.tail.data == 'C'  # Unchanged
-    #     ll.delete('C')
-    #     assert ll.head.data == 'B'  # Unchanged
-    #     assert ll.tail.data == 'B'  # New tail
-    #     ll.delete('B')
-    #     assert ll.head is None  # No head
-    #     assert ll.tail is None  # No tail
-    #     # Delete should raise error if item was already deleted
-    #     with self.assertRaises(ValueError):
-    #         ll.delete('A')  # Item no longer in list
-    #     with self.assertRaises(ValueError):
-    #         ll.delete('B')  # Item no longer in list
-    #     with self.assertRaises(ValueError):
-    #         ll.delete('C')  # Item no longer in list
+    def test_delete_with_3_items(self):
+        ll = LinkedList(['A', 'B', 'C'])
+        assert ll.head.data == 'A'  # First item
+        assert ll.tail.data == 'C'  # Last item
+        ll.delete('A')
+        assert ll.head.data == 'B'  # New head
+        assert ll.tail.data == 'C'  # Unchanged
+        ll.delete('C')
+        assert ll.head.data == 'B'  # Unchanged
+        assert ll.tail.data == 'B'  # New tail
+        ll.delete('B')
+        assert ll.head is None  # No head
+        assert ll.tail is None  # No tail
+        # Delete should raise error if item was already deleted
+        with self.assertRaises(ValueError):
+            ll.delete('A')  # Item no longer in list
+        with self.assertRaises(ValueError):
+            ll.delete('B')  # Item no longer in list
+        with self.assertRaises(ValueError):
+            ll.delete('C')  # Item no longer in list
 
-    # def test_delete_with_5_items(self):
-    #     ll = LinkedList(['A', 'B', 'C', 'D', 'E'])
-    #     assert ll.head.data == 'A'  # First item
-    #     assert ll.tail.data == 'E'  # Last item
-    #     ll.delete('A')
-    #     assert ll.head.data == 'B'  # New head
-    #     assert ll.tail.data == 'E'  # Unchanged
-    #     ll.delete('E')
-    #     assert ll.head.data == 'B'  # Unchanged
-    #     assert ll.tail.data == 'D'  # New tail
-    #     ll.delete('C')
-    #     assert ll.head.data == 'B'  # Unchanged
-    #     assert ll.tail.data == 'D'  # Unchanged
-    #     ll.delete('D')
-    #     assert ll.head.data == 'B'  # Unchanged
-    #     assert ll.tail.data == 'B'  # New tail
-    #     ll.delete('B')
-    #     assert ll.head is None  # No head
-    #     assert ll.tail is None  # No tail
+    def test_delete_with_5_items(self):
+        ll = LinkedList(['A', 'B', 'C', 'D', 'E'])
+        assert ll.head.data == 'A'  # First item
+        assert ll.tail.data == 'E'  # Last item
+        ll.delete('A')
+        assert ll.head.data == 'B'  # New head
+        assert ll.tail.data == 'E'  # Unchanged
+        ll.delete('E')
+        assert ll.head.data == 'B'  # Unchanged
+        assert ll.tail.data == 'D'  # New tail
+        ll.delete('C')
+        assert ll.head.data == 'B'  # Unchanged
+        assert ll.tail.data == 'D'  # Unchanged
+        ll.delete('D')
+        assert ll.head.data == 'B'  # Unchanged
+        assert ll.tail.data == 'B'  # New tail
+        ll.delete('B')
+        assert ll.head is None  # No head
+        assert ll.tail is None  # No tail
 
-    # def test_delete_with_item_not_in_list(self):
-    #     ll = LinkedList(['A', 'B', 'C'])
-    #     # Delete should raise error if item not found
-    #     with self.assertRaises(ValueError):
-    #         ll.delete('X')  # Item not found in list
+    def test_delete_with_item_not_in_list(self):
+        ll = LinkedList(['A', 'B', 'C'])
+        # Delete should raise error if item not found
+        with self.assertRaises(ValueError):
+            ll.delete('X')  # Item not found in list
 
 
 if __name__ == '__main__':
