@@ -31,7 +31,7 @@ def auto_complete(letter, dataList):
     return(" ".join(results))
 
 if __name__ == '__main__':
-    dataList = create_words_list("/usr/share/dict/words")
+    # dataList = create_words_list("/usr/share/dict/words")
     # get random num of letters from words file
     # num_letters = int(sys.argv[1:][0])
 
