@@ -1,9 +1,9 @@
 import random, sys
 
-with open('/usr/share/dict/words', 'r') as f:
-    data = f.read()
-    # splits at space
-    dataList = data.split()
+# with open('/usr/share/dict/words', 'r') as f:
+#     data = f.read()
+#     # splits at space
+#     dataList = data.split()
 
 raw_sentence = "one fish two fish red fish blue fish"
 sentence = raw_sentence.split()
