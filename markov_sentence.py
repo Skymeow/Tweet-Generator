@@ -1,16 +1,15 @@
 import sys, random, time
-import histogram
 from dictogram import Dictogram
 import pprint
 wordsList = ['one', 'fish', 'two', 'fish', 'red', 'fish', 'blue', 'fish', 'blue']
 def token_corpus(wordsList):
-    histogram_dict = histogram.histogram_dict(wordsList)
+    histogram_dict = Dictogram(wordsList)
     corpus_dict = {}
     for i in histogram_dict:
         number = [(index+1) for index, word in enumerate(wordsList) if word == i]
         next_word_list = [wordsList[num] for num in number if num < len(wordsList)]
         corpus_dict[i] = next_word_list
-    print(corpus_dict)
+    # print(corpus_dict)
     return(corpus_dict)
 
 def run_markov(sentence_num):
