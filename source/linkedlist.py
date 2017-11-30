@@ -24,6 +24,12 @@ class LinkedList(object):
             for item in items:
                 self.append(item)
 
+    def __iter__(self):
+        current = self.head
+        while current is not None:
+            yield current
+            current = current.next
+
     def __str__(self):
         """Return a formatted string representation of this linked list."""
         items = ['({!r})'.format(item) for item in self.items()]
@@ -58,15 +64,9 @@ class LinkedList(object):
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes and count one for each
         count = 0
-        node = self.head
-        # see if we hit the end of linkedlist
-        while node != None:
+        for _ in self:
             count += 1
-            # move one down the list and count it
-            node = node.next
-        # print('this is count', count)
         return count
-
 
     def append(self, item):
         """Insert the given item at the tail of this linked list."""
@@ -145,6 +145,23 @@ class LinkedList(object):
                     current_node.next = new_next_node
                     found = True
             current_node = current_node.next
+        if not found:
+            raise ValueError('Item not found: {}'.format(item))
+
+    def replace(old_item, new_item):
+        # first find the old_item, then set it's data to be old_item
+        current_node = self.head
+        while current_node.next:
+            next_node = current_node.next
+            if next_node.data == old_item.data:
+                if next_node != self.tail:
+                    new_next_node = next_node.next
+                    current_node.next = new_item
+                    new_item.next = new_next_node
+                else:
+                    self.tail = new_item
+                    current_node.next = new_item
+                    new_item.next = None
         if not found:
             raise ValueError('Item not found: {}'.format(item))
 
