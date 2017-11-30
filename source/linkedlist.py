@@ -131,10 +131,8 @@ class LinkedList(object):
             else:
                 self.head = self.head.next
                 return
-
         while current_node.next:
             next_node = current_node.next
-            # print(next_node.data, "next_node")
             if next_node.data == item:
                 if next_node == self.tail:
                     # reassign the tail
@@ -146,7 +144,6 @@ class LinkedList(object):
                     new_next_node = next_node.next
                     current_node.next = new_next_node
                     found = True
-            # print(self.length())
             current_node = current_node.next
         if not found:
             raise ValueError('Item not found: {}'.format(item))
