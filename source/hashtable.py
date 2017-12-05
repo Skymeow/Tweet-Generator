@@ -27,6 +27,7 @@ class HashTable(object):
         """Return a list of all keys in this hash table.
         Best and worst case running time: ??? under what conditions? [TODO]"""
         # Collect all keys in each of the buckets
+        # O(n2) time
         all_keys = []
         for bucket in self.buckets:
             for key, value in bucket.items():
@@ -37,6 +38,7 @@ class HashTable(object):
         """Return a list of all values in this hash table.
         Best and worst case running time: ??? under what conditions? [TODO]"""
         # Collect all values in each of the buckets
+        # O(n2) time
         all_values = []
         for bucket in self.buckets:
             for key, value in bucket.items():
@@ -47,6 +49,7 @@ class HashTable(object):
         """Return a list of all entries (key-value pairs) in this hash table.
         Best and worst case running time: ??? under what conditions? [TODO]"""
         # Collect all pairs of key-value entries in each of the buckets
+        # O(n) time
         all_items = []
         for bucket in self.buckets:
             all_items.extend(bucket.items())
@@ -55,7 +58,8 @@ class HashTable(object):
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
         Best and worst case running time: ??? under what conditions? [TODO]"""
-        # Count number of key-value entries in each of the buckets
+        # O(n2)?
+        # Count number of enties of each bucket
         count = 0
         for bucket in self.buckets:
             count += bucket.length()
@@ -66,6 +70,7 @@ class HashTable(object):
         Best case running time: ??? under what conditions? [TODO]
         Worst case running time: ??? under what conditions? [TODO]"""
         # Find the bucket the given key belongs in
+        # O(n) time
         bucket_index = self._bucket_index(key)
         found_bucket = self.buckets[bucket_index]
         # Check if an entry with the given key exists in that bucket
@@ -80,13 +85,14 @@ class HashTable(object):
         Best case running time: ??? under what conditions? [TODO]
         Worst case running time: ??? under what conditions? [TODO]"""
         # Find the bucket the given key belongs in
+        # O(n) time
         bucket_index = self._bucket_index(key)
         found_bucket = self.buckets[bucket_index]
         # Find the entry with the given key in that bucket, if one exists
         entry = found_bucket.find(lambda linked_item: linked_item[0] == key)
         if entry:
             # print('this is get entry', entry)
-            return entry
+            return entry[1]
         else:
             raise KeyError('Key not found: {}'.format(key))
 
@@ -95,13 +101,15 @@ class HashTable(object):
         Best case running time: ??? under what conditions? [TODO]
         Worst case running time: ??? under what conditions? [TODO]"""
         # Find the bucket the given key belongs in
-        bucket_index = self._bucket_index(key)
-        found_bucket = self.buckets[bucket_index]
+        # O(n) time
+        bucket_index = self._bucket_index(key) #o(1)
+        found_bucket = self.buckets[bucket_index] #o(1)
         # Find the entry with the given key in that bucket, if one exists
+        # O(l) for l items in bucket,  O(1) best case,  O(l) wrost case
         entry = found_bucket.find(lambda linked_item: linked_item[0] == key)
         if entry:
-            found_bucket.delete(entry)
-        found_bucket.append((key, value))
+            found_bucket.delete(entry) # O(l) for l items in bucket (LL)
+        found_bucket.append((key, value)) # O(1)
 
 
     def delete(self, key):
@@ -109,6 +117,7 @@ class HashTable(object):
         Best case running time: ??? under what conditions? [TODO]
         Worst case running time: ??? under what conditions? [TODO]"""
         # Find the bucket the given key belongs in
+        # O(n) time
         bucket_index = self._bucket_index(key)
         found_bucket = self.buckets[bucket_index]
         # Find the entry with the given key in that bucket, if one exists
