@@ -27,7 +27,7 @@ class HashTable(object):
         """Return a list of all keys in this hash table.
         Best and worst case running time: ??? under what conditions? [TODO]"""
         # Collect all keys in each of the buckets
-        # O(n2) time
+        # O(n2) time?
         all_keys = []
         for bucket in self.buckets:
             for key, value in bucket.items():
@@ -38,7 +38,7 @@ class HashTable(object):
         """Return a list of all values in this hash table.
         Best and worst case running time: ??? under what conditions? [TODO]"""
         # Collect all values in each of the buckets
-        # O(n2) time
+        # O(n2) time?
         all_values = []
         for bucket in self.buckets:
             for key, value in bucket.items():
@@ -70,7 +70,7 @@ class HashTable(object):
         Best case running time: ??? under what conditions? [TODO]
         Worst case running time: ??? under what conditions? [TODO]"""
         # Find the bucket the given key belongs in
-        # O(n) time
+        # O(l) for l items in bucket,  O(1) best case,  O(l) wrost case
         bucket_index = self._bucket_index(key)
         found_bucket = self.buckets[bucket_index]
         # Check if an entry with the given key exists in that bucket
@@ -85,7 +85,7 @@ class HashTable(object):
         Best case running time: ??? under what conditions? [TODO]
         Worst case running time: ??? under what conditions? [TODO]"""
         # Find the bucket the given key belongs in
-        # O(n) time
+        # O(n) time wrost if the item neat tail, O(1) if near head or doesn't exsit
         bucket_index = self._bucket_index(key)
         found_bucket = self.buckets[bucket_index]
         # Find the entry with the given key in that bucket, if one exists
@@ -97,9 +97,7 @@ class HashTable(object):
             raise KeyError('Key not found: {}'.format(key))
 
     def set(self, key, value):
-        """Insert or update the given key with its associated value.
-        Best case running time: ??? under what conditions? [TODO]
-        Worst case running time: ??? under what conditions? [TODO]"""
+        """Insert or update the given key with its associated value."""
         # Find the bucket the given key belongs in
         # O(n) time
         bucket_index = self._bucket_index(key) #o(1)
@@ -113,11 +111,8 @@ class HashTable(object):
 
 
     def delete(self, key):
-        """Delete the given key and its associated value, or raise KeyError.
-        Best case running time: ??? under what conditions? [TODO]
-        Worst case running time: ??? under what conditions? [TODO]"""
         # Find the bucket the given key belongs in
-        # O(n) time
+        # # O(l) for l items in bucket,  O(1) best case,  O(l) wrost case
         bucket_index = self._bucket_index(key)
         found_bucket = self.buckets[bucket_index]
         # Find the entry with the given key in that bucket, if one exists

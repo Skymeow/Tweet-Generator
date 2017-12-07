@@ -24,17 +24,22 @@ class Listogram(list):
         # check if the rand word from list is the same as word in each tuple
         # also need to check if the word already exist in the list tuple
         if word not in self:
+            # Have not yet seen this word
             self.append((word, count))
             self.types += 1
+            self.tokens += count
         else:
-            for tuple_item in self:
+            # have seen the word, increase the count
+            for index, tuple_item in enumerate(self):
                 if tuple_item[0] == word:
-                    frequency = tuple_item[1]
-                    frequency += count
-                    new_tuple_item = (word, frequency)
-                    self.remove(tuple_item)
-                    self.append(new_tuple_item)
-        self.tokens += count
+                    # get the count of the word we are looking for
+                    old_count = tuple_item[1]
+                    # update a new tuple with an increased count
+                    new_tuple_item = (word, old_count + count)
+                    self[index] = new_tuple_item
+                    # add count to token
+                    self.tokens += count
+                    return
 
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
@@ -43,7 +48,6 @@ class Listogram(list):
             if word == tuple_item[0]:
                 return tuple_item[1]
         return 0
-
 
     def __contains__(self, word):
         """Return boolean indicating if given word is in this histogram."""

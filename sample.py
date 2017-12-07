@@ -1,5 +1,6 @@
 import sys, random, time
 import histogram
+from dictogram import Dictogram
 t_init = time.time()
 
 with open('onefish.txt', 'r') as f:
@@ -9,8 +10,11 @@ with open('onefish.txt', 'r') as f:
 histogram_dict = histogram.histogram_dict(wordsList)
 
 def sample_by_frequency(histogram_dict):
-# get total num of the words frequency
-    total_token = sum(histogram_dict.values())
+    # get total num of the words frequency
+    if isinstance(histogram_dict, Dictogram):
+        total_token = histogram_dict.tokens
+    else:
+        total_token = sum(histogram_dict.values())
     # rand_frequency = random.randint(0, total_token)/total_token
     rand_frequency = random.uniform(0, 1)
     weighted_token = 0
