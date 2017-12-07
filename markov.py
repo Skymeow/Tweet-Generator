@@ -5,7 +5,8 @@ import sys, random, time
 
 class Markov(dict):
     def __init__(self, word_list):
-        self.markov_chain = self.create_histograms(word_list)
+        self["START"] = Dictogram()
+        self.create_histograms(word_list)
 
     def create_histograms(self, word_list):
         """Read the given word list and create the Markov chain structure.
@@ -14,17 +15,19 @@ class Markov(dict):
         Otherwise, if word has been seen, get its existing histogram.
         In either case, add count 1 for next_word in word's histogram."""
         # TODO
-        histograms = {}
         for index, word in enumerate(word_list):
             # If word has never been seen before, create a new histogram with a list containing next word
+            self["START"].add_count(word_list[0])
             if index < len(word_list) - 1:
-                if word not in histograms:
-                    histograms[word] = Dictogram([word_list[index+1]])
+                if word not in self:
+                    self[word] = Dictogram([word_list[index+1]])
                 # if word has been seen, get its existing histogram and append the count to it
                 else :
-                    histograms[word].add_count(word_list[index+1], 1) # o(n) , n is len word_list
+                    self[word].add_count(word_list[index+1]) # o(n) , n is len word_list
+            self[word_list[-1]] = Dictogram("END")
+
         # print(histograms)
-        return histograms
+
 
     def generate_sentence(self, num_words=10):
         """Perform a random walk on this Markov chain to generate a
@@ -45,7 +48,7 @@ class Markov(dict):
         # TODO: Find the histogram representing last word's transitions
         # TODO: Sample a word from that histogram by word frequency
         # TODO: Return that word (string)
-        current_histogram = self.markov_chain[last_word]
+        current_histogram = self[last_word]
         next_weighted_word = sample_by_frequency(current_histogram)
         return next_weighted_word
 
