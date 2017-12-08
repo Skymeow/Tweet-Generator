@@ -15,13 +15,14 @@ class Markov(dict):
         # since it's 2rd order, we are making space for 2 words
         for index, word in enumerate(word_list):
             # If word has never been seen before, create a new histogram with a list containing next word
-            if index < len(word_list) - 1:
+            if index < len(word_list) - 2:
                 window = (word_list[index], word_list[index+1])
                 if window not in histograms:
-                    histograms[window] = Dictogram([word_list[index+1]])
+                    histograms[window] = Dictogram([word_list[index+2]])
                 # if word has been seen, get its existing histogram and append the count to it
                 else :
-                    histograms[window].add_count(word_list[index+1]) # o(n) , n is len word_list
+                    histograms[window].add_count(word_list[index+2]) # o(n) , n is len word_list
+        print(histograms)
         return histograms
 
     def generate_sentence(self, num_words=10):
@@ -31,9 +32,7 @@ class Markov(dict):
         current_window = ('one', 'fish')
         for i in range(0, num_words):
             next_random_word = self.generate_word(current_window)
-            # print("next_rd_word", next_random_word)
             current_window = (current_window[1], next_random_word)
-            # print("current_window", current_window)
             sentence_list.append(next_random_word)
         return ' '.join(sentence_list)
 
