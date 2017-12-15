@@ -5,6 +5,8 @@ import sys, random, time
 
 class Markov(dict):
     def __init__(self, word_list):
+        # for sentence in word_list: # Cleaned Corpus
+        #     self.create_histograms(sentence)
         self.markov_chain = self.create_histograms(word_list)
 
     def create_histograms(self, word_list):
@@ -22,6 +24,7 @@ class Markov(dict):
                 # if word has been seen, get its existing histogram and append the count to it
                 else :
                     histograms[word].add_count(word_list[index+1]) # o(n) , n is len word_list
+        print(histograms)
         return histograms
 
     def generate_sentence(self, num_words=10):
@@ -59,7 +62,7 @@ class Markov(dict):
 
 def test_markov_chain():
     word_list = ['one', 'fish', 'two', 'fish', 'red', 'fish', 'blue', 'fish', 'blue']
-    Markov(word_list)
+    # Markov(word_list)
     print('markov sentence: {}'.format(Markov(word_list).generate_sentence()))
 
 
