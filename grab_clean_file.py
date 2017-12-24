@@ -5,23 +5,23 @@ from nltk.tokenize import sent_tokenize
 
 
 def read_file():
-    cleaned_corp = []
-    raw_file = Path("new_shining.txt")
-    file_open = open(raw_file).read()
-    cleaner = re.sub(r'\(', '', file_open)
-    cleanerer = re.sub(r'\)', '', cleaner)
-    cleanererer = re.sub(r'\d*', '', cleanerer)
-    corpus = sent_tokenize(cleanererer)
-    for sentence in corpus:
+    result_list = []
+    raw_file = Path("cleaned_shining.txt")
+    sentence_list = open(raw_file).read().lower()
+    sentence_list = remove_nonsense(sentence_list)
+    cleaned_sentences = sent_tokenize(sentence_list)
+    for sentence in cleaned_sentences:
         if sentence[0] != ".":
-            cleaned_corp.append(sentence)
-    return cleaned_corp
+            add_end = sentence[:-1]
+            # remove_dot = sentence[:-1]
+            # add_end = remove_dot + ' END'
+            result_list.append(add_end)
+    return result_list
 
-    # print(cleaned_corp)
-     # no_quote= re.sub('"', "",file_open)
-    # no_space = re.sub('\n', "", no_quote)
-    # no_weird = re.sub('\(\)'), "", no_quote)
-    # re.match(r'', re.I, re.)
-    # f = open("shining.txt", "w")
-    # f.write(no_space)
-print(read_file())
+def remove_nonsense(text):
+    cleaner = re.sub(r'\(', ' ', text)
+    cleaner = re.sub(r'\)', ' ', cleaner)
+    cleaned = re.sub('--', ' ', cleaner)
+    return cleaner
+
+# print(read_file())
