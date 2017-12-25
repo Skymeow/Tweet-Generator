@@ -3,11 +3,11 @@ import histogram
 from dictogram import Dictogram
 t_init = time.time()
 
-with open('onefish.txt', 'r') as f:
-    data = f.read()
-    wordsList = data.split()
+# with open('onefish.txt', 'r') as f:
+#     data = f.read()
+#     wordsList = data.split()
 
-histogram_dict = histogram.histogram_dict(wordsList)
+# histogram_dict = histogram.histogram_dict(wordsList)
 
 def sample_by_frequency(histogram_dict):
     # get total num of the words frequency
