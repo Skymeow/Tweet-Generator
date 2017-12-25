@@ -3,6 +3,7 @@ from dictogram import Dictogram
 from sample import sample_by_frequency
 import sys, random, time
 from grab_clean_file import read_file
+import re
 
 class Markov(dict):
     def __init__(self, word_list):
@@ -22,7 +23,7 @@ class Markov(dict):
         Otherwise, if word has been seen, get its existing histogram.
         In either case, add count 1 for next_word in word's histogram."""
         histograms = {}
-        histograms['START'] = Dictogram(self.generate_start(word_list))
+        histograms['END'] = Dictogram(self.generate_start(word_list))
         for index, word in enumerate(word_list):
             # If word has never been seen before, create a new histogram with a list containing next word
             if index < len(word_list) - 1:
@@ -36,11 +37,10 @@ class Markov(dict):
     def generate_word(self, markov):
     #     """Given the last word generated in a sentence, pick a new word
     #     randomly according to the frequency of words following it."""
-        if 'END' in markov:
-            current_word = 'END'
-            while current_word == 'END':
-                current_word = sample_by_frequency(markov['END'])
-                return current_word
+        current_word = 'END'
+        while current_word == 'END':
+            current_word = sample_by_frequency(markov['END'])
+            return current_word
         return random.choice(markov.keys())
 
     def generate_sentence(self, num_words=10):
@@ -55,12 +55,19 @@ class Markov(dict):
             random_weighted_word = sample_by_frequency(current_histogram)
             current_word = random_weighted_word
             sentence_list.append(current_word)
-        return ' '.join(sentence_list) + '.'
+        sentence_list[0] = sentence_list[0].capitalize()
+        sentence = ' '.join(sentence_list) + '.'
+        if sentence[len(sentence) - 1] == 'END':
+            sentence = re.sub(' END', '.', sentence, flags=re.IGNORECASE)
+        else:
+            sentence = re.sub(' END', ',', sentence, flags=re.IGNORECASE)
+        return sentence
 
 def test_markov_chain():
-    cleaned_file = read_file()
-    print(Markov(cleaned_file).generate_sentence())
-    # print(Markov(cleaned_file).generate_start(cleaned_file))
+    pass
+    # cleaned_file = read_file()
+    # print(Markov(cleaned_file).generate_sentence())
+    # print(Markov(cleaned_file).generate_word(Markov(cleaned_file).markov_chain))
     # print(markov_modal.generate_sentence())
     # print('markov sentence: {}'.format(Markov(word_list).generate_sentence()))
 
