@@ -1,7 +1,7 @@
 import re
 from pathlib import Path
 import sys, random, time
-from nltk.tokenize import sent_tokenize
+# from nltk.tokenize import sent_tokenize
 
 def read_file():
     start_list = []
