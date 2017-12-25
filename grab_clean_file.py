@@ -5,18 +5,17 @@ from nltk.tokenize import sent_tokenize
 
 
 def read_file():
-    result_list = []
+    start_list = []
     raw_file = Path("cleaned_shining.txt")
-    sentence_list = open(raw_file).read().lower()
-    sentence_list = remove_nonsense(sentence_list)
-    cleaned_sentences = sent_tokenize(sentence_list)
-    for sentence in cleaned_sentences:
+    cleaned_sentences = open(raw_file).read().lower()
+    cleaned_sentences = remove_nonsense(cleaned_sentences)
+    sentence_list = sent_tokenize(cleaned_sentences)
+    words = cleaned_sentences.split(" ")
+    for sentence in sentence_list:
         if sentence[0] != ".":
-            add_end = sentence[:-1]
-            # remove_dot = sentence[:-1]
-            # add_end = remove_dot + ' END'
-            result_list.append(add_end)
-    return result_list
+            start = sentence.split(" ")[0].capitalize()
+            start_list.append(start)
+    return {'start_list': start_list, 'word_list': words}
 
 def remove_nonsense(text):
     cleaner = re.sub(r'\(', ' ', text)
@@ -24,4 +23,4 @@ def remove_nonsense(text):
     cleaned = re.sub('--', ' ', cleaner)
     return cleaner
 
-# print(read_file())
+# print(read_file()['word_list'])
