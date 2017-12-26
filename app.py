@@ -2,8 +2,13 @@ from flask import Flask
 from sample import *
 from markov import *
 from grab_clean_file import *
+from flask import render_template
 
 app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 @app.route("/<int:population>")
 def create(population=10):

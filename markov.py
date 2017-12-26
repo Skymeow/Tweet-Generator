@@ -63,16 +63,13 @@ class Markov(dict):
             sentence = re.sub(' END', ',', sentence, flags=re.IGNORECASE)
         return sentence
 
-def test_markov_chain():
-    pass
+# def test_markov_chain():
     # cleaned_file = read_file()
     # print(Markov(cleaned_file).generate_sentence())
     # print(Markov(cleaned_file).generate_word(Markov(cleaned_file).markov_chain))
     # print(markov_modal.generate_sentence())
     # print('markov sentence: {}'.format(Markov(word_list).generate_sentence()))
 
-
-
-if __name__ == '__main__':
-    test_markov_chain()
+# if __name__ == '__main__':
+#     test_markov_chain()
 

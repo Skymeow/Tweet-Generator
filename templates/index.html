@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>shining</title>
+  <link rel="stylesheet" href="style.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
+   <script src="pixi.min.js"></script>
+   <!-- <script src="main.js"></script> -->
+</head>
+<body>
+  <script type="text/javascript">
+    // testing is it's linked
+    let type = "WebGL"
+    if(!PIXI.utils.isWebGLSupported()){
+      type = "canvas"
+    }
+    PIXI.utils.sayHello(type)
+
+    var app = new PIXI.Application();
+    document.body.appendChild(app.view);
+    // Create background image
+    var background = PIXI.Sprite.fromImage("http://www.larsenonfilm.com/wp-content/uploads/2013/04/shiningtwins1.jpg");
+    background.width = app.screen.width;
+    background.height = app.screen.height;
+    app.stage.addChild(background);
+    // Stop application wait for load to finish
+    app.stop();
+    PIXI.loader.add('shader', 'assets/shader.frag')
+        .load(onLoaded);
+    var filter;
+    // Handle the load completed
+    function onLoaded (loader,res) {
+        // Create the new filter, arguments: (vertexShader, framentSource)
+        filter = new PIXI.Filter(null, res.shader.data);
+        // Add the filter
+        background.filters = [filter];
+        // Resume application update
+        app.start();
+    }
+    // Animate the filter
+    app.ticker.add(function(delta) {
+        filter.uniforms.customUniform += 0.04 * delta;
+    });
+  </script>
+</body>
+</html>
