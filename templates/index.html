@@ -6,7 +6,7 @@
   <title>shining</title>
   <link rel="stylesheet" href="style.css">
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
-   <script src="pixi.min.js"></script>
+   <script src="./statics/pixi.min.js"></script>
    <!-- <script src="main.js"></script> -->
 </head>
 <body>
@@ -27,7 +27,7 @@
     app.stage.addChild(background);
     // Stop application wait for load to finish
     app.stop();
-    PIXI.loader.add('shader', 'assets/shader.frag')
+    PIXI.loader.add('shader', './statics/assets/shader.frag')
         .load(onLoaded);
     var filter;
     // Handle the load completed
