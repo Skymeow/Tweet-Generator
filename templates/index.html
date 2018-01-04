@@ -16,12 +16,12 @@
       type = "canvas"
     }
     PIXI.utils.sayHello(type)
-
+    canvas = document.getElementById("canvas")
+    print(window.innerWidth)
+    canvas.style.width = window.innerWidth;
+    canvas.style.height = window.innerHeight;
     var app = new PIXI.Application();
     document.body.appendChild(app.view);
-    canvas = document.getElementById("canvas")
-    canvas.width = app.screen.width;
-    canvas.height = app.screen.width;
     // Create background image
     // var imgElement = document.createElement('img');
     // imgElement.crossOrigin = "anonymous";
