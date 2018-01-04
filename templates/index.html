@@ -20,7 +20,10 @@
     var app = new PIXI.Application();
     document.body.appendChild(app.view);
     // Create background image
-    var background = PIXI.Sprite.fromImage("https://www.tynesidecinema.co.uk/storage/app/uploads/public/59c/556/ac4/59c556ac4f5ef978020283.png");
+    let options = {
+        crossOrigin: true
+    };
+    var background = PIXI.Sprite.fromImage("https://www.tynesidecinema.co.uk/storage/app/uploads/public/59c/556/ac4/59c556ac4f5ef978020283.png", options);
     background.width = app.screen.width;
     background.height = app.screen.height;
     app.stage.addChild(background);
