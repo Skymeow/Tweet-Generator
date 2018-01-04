@@ -30,7 +30,7 @@
     // Stop application wait for load to finish
     app.stop();
    PIXI.loader.add("https://www.tynesidecinema.co.uk/storage/app/uploads/public/59c/556/ac4/59c556ac4f5ef978020283.png", {crossOrigin: 'anonymous'});
-    PIXI.loader.add(shader, '../static/assets/shader.frag', {crossOrigin: 'anonymous'})
+    PIXI.loader.add('shader', '../static/assets/shader.frag', {crossOrigin: 'anonymous'})
         .load(onLoaded);
     var filter;
     // Handle the load completed
