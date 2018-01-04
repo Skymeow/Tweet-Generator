@@ -20,7 +20,7 @@
     var app = new PIXI.Application();
     document.body.appendChild(app.view);
     // Create background image
-    var imgElement = document.createElement('img') as HTMLimgElement;
+    var imgElement = document.createElement('img');
     imgElement.crossOrigin = "anonymous";
     imgElement.src = "https://www.tynesidecinema.co.uk/storage/app/uploads/public/59c/556/ac4/59c556ac4f5ef978020283.png";
 
@@ -32,7 +32,7 @@
     app.stage.addChild(background);
     // Stop application wait for load to finish
     app.stop();
-    // PIXI.loader.add('json-url', { crossOrigin: '' })
+    PIXI.loader.add('json-url', { crossOrigin: '' })
     PIXI.loader.add('shader', './statics/assets/shader.frag')
         .load(onLoaded);
     var filter;
