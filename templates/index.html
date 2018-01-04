@@ -16,9 +16,9 @@
       type = "canvas"
     }
     PIXI.utils.sayHello(type)
-    cavas = document.getElementById("canvas")
-    canvas.width = document.body.clientWidth;
-    canvas.height = document.body.clientHeight;
+    // cavas = document.getElementById("canvas")
+    // canvas.width = document.body.clientWidth;
+    // canvas.height = document.body.clientHeight;
     var app = new PIXI.Application();
     document.body.appendChild(app.view);
     // Create background image
@@ -26,8 +26,9 @@
     // imgElement.crossOrigin = "anonymous";
     // imgElement.src = "https://www.tynesidecinema.co.uk/storage/app/uploads/public/59c/556/ac4/59c556ac4f5ef978020283.png";
     var background = PIXI.Sprite.fromImage("../static/assets/creepykid.jpg", {crossOrigin: 'anonymous'});
-    background.width = app.screen.width;
-    background.height = app.screen.height;
+    background.width = document.body.clientWidth;
+    background.height = document.body.clientHeight;
+    // app.screen.height;
     app.stage.addChild(background);
     // Stop application wait for load to finish
     app.stop();
