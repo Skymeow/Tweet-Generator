@@ -17,8 +17,8 @@
     }
     PIXI.utils.sayHello(type)
     canvas = document.getElementById("canvas")
-    canvas.width = document.body.clientWidth;
-    canvas.height = document.body.clientHeight;
+    canvas.width = document.body.width;
+    canvas.height = document.body.height;
     var app = new PIXI.Application();
     document.body.appendChild(app.view);
     // Create background image
