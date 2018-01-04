@@ -16,7 +16,9 @@
       type = "canvas"
     }
     PIXI.utils.sayHello(type)
-
+    cavas = document.getELementById("canvas")
+    canvas.width = document.body.clientWidth;
+    canvas.height = document.body.clientHeight;
     var app = new PIXI.Application();
     document.body.appendChild(app.view);
     // Create background image
