@@ -20,19 +20,17 @@
     var app = new PIXI.Application();
     document.body.appendChild(app.view);
     // Create background image
-    // var imgElement = document.createElement('img');
-    // imgElement.crossOrigin = "anonymous";
-    // imgElement.src = "https://www.tynesidecinema.co.uk/storage/app/uploads/public/59c/556/ac4/59c556ac4f5ef978020283.png";
-
-    // var background = PIXI.Sprite.fromImage(imgElement);
-    var background = PIXI.Sprite.fromImage("https://www.tynesidecinema.co.uk/storage/app/uploads/public/59c/556/ac4/59c556ac4f5ef978020283.png");
+    var imgElement = document.createElement('img');
+    imgElement.crossOrigin = "anonymous";
+    imgElement.src = "https://www.tynesidecinema.co.uk/storage/app/uploads/public/59c/556/ac4/59c556ac4f5ef978020283.png";
+    var background = PIXI.Sprite.fromImage(imgElement);
     background.width = app.screen.width;
     background.height = app.screen.height;
     app.stage.addChild(background);
     // Stop application wait for load to finish
     app.stop();
-    PIXI.loader.add('json-url', { crossOrigin: '' })
-    PIXI.loader.add('shader', './statics/assets/shader.frag')
+   PIXI.loader.add("../static/assets/creepykid.jpg", {crossOrigin: 'anonymous'});
+    PIXI.loader.add(shader, '../static/assets/shader.frag', {crossOrigin: 'anonymous'})
         .load(onLoaded);
     var filter;
     // Handle the load completed
