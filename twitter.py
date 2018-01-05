@@ -1,4 +1,3 @@
-import dotenv
 from requests_oauthlib import OAuth1Session
 
 consumer_key = "QSvRQvhgc2G8S6pOGnA2aUKk1"
