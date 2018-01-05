@@ -16,9 +16,9 @@
       type = "canvas"
     }
     PIXI.utils.sayHello(type)
-    canvas = document.getElementById("canvas")
-    canvas.style.width = $(window).width();
-    canvas.style.height = $(window).height();
+    // canvas = document.getElementById("canvas")
+    // canvas.style.width = $(window).width();
+    // canvas.style.height = $(window).height();
     var app = new PIXI.Application();
     document.body.appendChild(app.view);
     // Create background image
@@ -49,5 +49,8 @@
         filter.uniforms.customUniform += 0.04 * delta;
     });
   </script>
+  <div class=quote>
+    <h1> {{ sentence }}</h1>
+  </div>
 </body>
 </html>

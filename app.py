@@ -8,7 +8,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    cleaned_file = read_file()
+    random_sentence = Markov(cleaned_file).generate_sentence(population)
+    return render_template('index.html', sentence=random_sentence)
 
 @app.route("/<int:population>")
 def create(population=10):
