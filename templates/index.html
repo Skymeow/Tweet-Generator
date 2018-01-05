@@ -51,6 +51,13 @@
   </script>
   <div class=quote>
     <h1> {{ sentence }}</h1>
+    <form action="/tweet" method="post">
+            <input type="hidden" name="sentence" value="{{ sentence }}">
+            <button class=tweet type="submit" style="vertical-align:middle">
+              <span>Post Tweet</span>
+            </button>
+    </form>
+        <!-- <a class="linkToAccount" href="https://twitter.com/ReSiliconTweets" target="_blank">See all posted <span class="blue">tweets</span>!</a> -->
   </div>
 </body>
 </html>
