@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     cleaned_file = read_file()
-    random_sentence = Markov(cleaned_file).generate_sentence(population)
+    random_sentence = Markov(cleaned_file).generate_sentence()
     return render_template('index.html', sentence=random_sentence)
 
 @app.route("/<int:population>")
