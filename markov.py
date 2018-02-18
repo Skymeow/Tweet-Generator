@@ -27,11 +27,12 @@ class Markov(dict):
         for index, word in enumerate(word_list):
             # If word has never been seen before, create a new histogram with a list containing next word
             if index < len(word_list) - 1:
+                next_word = word_list[index+1]
                 if word not in histograms:
-                    histograms[word] = Dictogram([word_list[index+1]])
+                    histograms[word] = Dictogram([next_word])
                 # if word has been seen, get its existing histogram and append the count to it
                 else:
-                    histograms[word].add_count(word_list[index+1]) # o(n) , n is len word_list
+                    histograms[word].add_count(next_word) # o(n) , n is len word_list
         return histograms
 
     def generate_word(self, markov):
@@ -48,28 +49,35 @@ class Markov(dict):
         sequence of words and return it as a single formatted string."""
         # TODO: Loop and generate num_words, collect each in a list
         # TODO: Format the list of words as a sentence and return it
+        #
         current_word = self.generate_word(self.markov_chain)
-        sentence_list = [current_word]
+        sentence_list = [current_word.capitalize()]
+        # generate the sentence with the length of num_words
         for i in range(0, num_words):
+            # get the next word based on frequency and add that to the sentence
             current_histogram = self.markov_chain[current_word]
             random_weighted_word = sample_by_frequency(current_histogram)
             current_word = random_weighted_word
             sentence_list.append(current_word)
-        sentence_list[0] = sentence_list[0].capitalize()
+        # change the end of the sentence into . or , depends on if the sentence is ended2
+        for index, word in enumerate(sentence_list):
+            if index == (len(sentence_list)-1) and word == 'END':
+                sentence_list[index] = "."
+                # sentence = re.sub(' END', '.', sentence, flags=re.IGNORECASE)
+            elif word == "END":
+                # sentence = re.sub(' END', ',', sentence, flags=re.IGNORECASE)
+                sentence_list[index] = ","
         sentence = ' '.join(sentence_list) + '.'
-        if sentence[len(sentence) - 1] == 'END':
-            sentence = re.sub(' END', '.', sentence, flags=re.IGNORECASE)
-        else:
-            sentence = re.sub(' END', ',', sentence, flags=re.IGNORECASE)
+        print(sentence)
         return sentence
 
-# def test_markov_chain():
-    # cleaned_file = read_file()
-    # print(Markov(cleaned_file).generate_sentence())
+def test_markov_chain():
+    cleaned_file = read_file("pages.txt")
+    markov_model = Markov(cleaned_file)
     # print(Markov(cleaned_file).generate_word(Markov(cleaned_file).markov_chain))
-    # print(markov_modal.generate_sentence())
+    print(markov_model.generate_sentence())
     # print('markov sentence: {}'.format(Markov(word_list).generate_sentence()))
 
-# if __name__ == '__main__':
-#     test_markov_chain()
+if __name__ == '__main__':
+    test_markov_chain()
 
