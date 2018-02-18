@@ -45,7 +45,7 @@ class Markov(object):
         # pprint(histograms)
         return histograms
 
-    def generate_sentence(self, num_words=10):
+    def generate_sentence(self, num_words=15):
         """Perform a random walk on this Markov chain to generate a
         sequence of words and return it as a single formatted string."""
         start_word = self.generate_word(self.histograms)
@@ -89,15 +89,14 @@ class Markov(object):
         return random.choice(markov.keys())
 
 
-def test_markov_chain():
-    file_name = "pages.txt"
-    # file_name = "taco.txt"
-    cleaned_file = read_file(file_name)
-    markov_model = Markov(cleaned_file)
-    # pprint(markov_model.histograms)
-    # print(Markov(cleaned_file).generate_word(Markov(cleaned_file).histograms))
-    print(markov_model.generate_sentence())
-    # print('markov sentence: {}'.format(Markov(word_list).generate_sentence()))
+# def test_markov_chain():
+#     file_name = "pages.txt"
+#     file_name = "taco.txt"
+#     cleaned_file = read_file(file_name)
+#     # markov_model = Markov(cleaned_file)
+#     # pprint(markov_model.histograms)
+#     # print(markov_model.generate_sentence())
 
-if __name__ == '__main__':
-    test_markov_chain()
+
+# if __name__ == '__main__':
+#     test_markov_chain()

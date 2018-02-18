@@ -1,6 +1,6 @@
 from flask import Flask
 from sample import *
-from markov import *
+from 2rdOrder_Markov import *
 from grab_clean_file import *
 from flask import render_template
 import twitter
@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    cleaned_file = read_file()
+    cleaned_file = read_file("pages.txt")
     random_sentence = Markov(cleaned_file).generate_sentence()
     return render_template('index.html', sentence=random_sentence)
 
