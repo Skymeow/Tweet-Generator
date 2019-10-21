@@ -20,7 +20,7 @@ six==1.10.0
 snowballstemmer==1.2.1
 urllib3==1.22
 virtualenv==15.1.0
-Werkzeug==0.12.2
+Werkzeug==0.15.3
 gunicorn==19.7.1
 oauthlib[signedtoken]>=0.6.2
 requests_oauthlib==0.8.0
